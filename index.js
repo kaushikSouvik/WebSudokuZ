@@ -42,6 +42,7 @@ app.set("view engine", "ejs")
 
 
 mongoose.set('strictQuery', true);
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.use(session({
     secret: process.env.SECRET,
