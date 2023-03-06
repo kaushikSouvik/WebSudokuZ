@@ -5,6 +5,7 @@ import express from "express";
 //const express = require("express");
 const app = express();
 import bodyParser from "body-parser";
+import favicon from "serve-favicon";
 //const bodyParser = require("body-parser")
 import mongoose from "mongoose";
 //const mongoose = require('mongoose');
@@ -32,7 +33,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -96,9 +97,7 @@ app.route("/")
     });
 
 //----------------------------------------
-app.get('/favicon.ico', function(req, res){
-    res.redirect("/notfound");
-});
+
 //------------------------------------REGISTER/SIGNUP ROUTE---------------------------------
 app.route("/register")
     .get(function (req, res) {
