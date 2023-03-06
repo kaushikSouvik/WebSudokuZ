@@ -31,7 +31,7 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/favicon.ico', (req, res) => res.status(204).end());
+//app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -273,7 +273,10 @@ app.route("/howtoplay")
     })
 
 
+    app.get('*', (req, res) => {
+        res.render("notFound.ejs", {msg: "PAGE NOT FOUND!", isItAuthenticated: req.isAuthenticated()});
+      });
 
-app.listen(3000, function () {
+app.listen(9000, function () {
     console.log("At port 3000");
 })
