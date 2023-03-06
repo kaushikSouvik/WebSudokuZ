@@ -31,7 +31,7 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-//app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -95,6 +95,10 @@ app.route("/")
         res.render("home", { isItAuthenticated: req.isAuthenticated() });
     });
 
+//----------------------------------------
+app.get('/favicon.ico', function(req, res){
+    res.redirect("/notfound");
+});
 //------------------------------------REGISTER/SIGNUP ROUTE---------------------------------
 app.route("/register")
     .get(function (req, res) {
@@ -272,10 +276,14 @@ app.route("/howtoplay")
         res.render("howtoplaysudoku", {isItAuthenticated: true})
     })
 
-
-    app.get('*', (req, res) => {
-        res.render("notFound.ejs", {msg: "PAGE NOT FOUND!", isItAuthenticated: req.isAuthenticated()});
-      });
+app.route("/notfound")
+    .get(function(req, res){
+        res.render("notFound");
+    })
+app.get('*', (req, res) => {
+        res.redirect("/notfound")
+        
+    });
 
 app.listen(9000, function () {
     console.log("At port 3000");
