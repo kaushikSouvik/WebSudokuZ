@@ -31,7 +31,7 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/favicon.ico', (req, res) => res.status(500));
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
