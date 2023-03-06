@@ -45,7 +45,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-const GenerateSudoku = require(__dirname + "/generateSudoku.js")
+import {GenerateSudoku} from path.join(__dirname, 'generateSudoku.js')
+//const GenerateSudoku = require(__dirname + "/generateSudoku.js")
 //use passport to start authentication
 app.use(passport.initialize());
 
