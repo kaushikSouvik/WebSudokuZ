@@ -1,46 +1,55 @@
-//require('dotenv').config()
+// require('dotenv').config()
+// const express = require("express");
+// const bodyParser = require("body-parser")
+// const mongoose = require('mongoose');
+// const encrypt = require('mongoose-encryption')
+// const session = require('express-session');
+// const passport = require("passport");
+// const passportLocalMongoose = require("passport-local-mongoose");
+// const { title } = require("process");
+// const { use } = require('passport');
+// const { render } = require('ejs');
+// const favicon= require("serve-favicon");
+
+// const app= express();
+// const GenerateSudoku = require(__dirname + "/generateSudoku.js")
+
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-//const express = require("express");
+
 const app = express();
 import bodyParser from "body-parser";
 import favicon from "serve-favicon";
-//const bodyParser = require("body-parser")
 import mongoose from "mongoose";
-//const mongoose = require('mongoose');
-//const encrypt = require('mongoose-encryption')
 import session from "express-session";
-//const session = require('express-session');
 import passport from "passport";
-//const passport = require("passport");
 import passportLocalMongoose from "passport-local-mongoose";
-//const passportLocalMongoose = require("passport-local-mongoose");
 import { title } from "process";
+
 import pkg from "passport";
 const { use } =pkg 
-// const { title } = require("process");
-// const { use } = require('passport');
-//const { render } = require('ejs');
-
-//const express= require("express");
-//const bodyParser= require("body-parser");
-//const app= express();
 
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-
-//app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(favicon(__dirname + '/favicon.ico'));
-app.use(express.static(path.join(__dirname, 'public')));
 
+import GenerateSudoku from path.join(__dirname, 'generateSudoku.js')
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
+//"start": "node --experimental-modules index.js",
+//"type": "module",
 
+
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
+
+//app.use(favicon(__dirname + '/favicon.ico'));
+// app.use(express.static((__dirname+ '/public')));
+
+// app.set('views', (__dirname+ '/views'));
 
 mongoose.set('strictQuery', true);
 //app.get('/favicon.ico', (req, res) => res.status(204).end());
@@ -50,8 +59,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-import GenerateSudoku from path.join(__dirname, 'generateSudoku.js')
-//const GenerateSudoku = require(__dirname + "/generateSudoku.js")
+
+
 //use passport to start authentication
 app.use(passport.initialize());
 
@@ -287,5 +296,5 @@ app.get('*', (req, res) => {
     });
 
 app.listen(9000, function () {
-    console.log("At port 3000");
+    console.log("At port 9000");
 })
