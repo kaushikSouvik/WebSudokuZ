@@ -35,6 +35,7 @@ const __dirname = path.dirname(__filename);
 
 //app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +43,7 @@ app.set("view engine", "ejs")
 
 
 mongoose.set('strictQuery', true);
-app.get('/favicon.ico', (req, res) => res.status(204).end());
+//app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.use(session({
     secret: process.env.SECRET,
